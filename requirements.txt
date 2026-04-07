@@ -1,21 +1,37 @@
-# Web server
-gunicorn==25.3.0
-
-# Database
-psycopg2-binary==2.9.11
-dj-database-url==3.1.2
-
-# Django and REST framework
-django==4.2.29
-djangorestframework==3.17.1
 asgiref==3.11.1
-sqlparse==0.5.5
-
-# Static files
-whitenoise==6.12.0
-
-# Packaging tools
+black==24.10.0
+certifi==2026.2.25
+channels==4.3.2
+charset-normalizer==3.4.5
+click==8.3.2
+dj-database-url==3.1.2
+Django==4.2.29
+django-cors-headers==4.9.0
+django-extensions==4.1
+django-filter==24.3
+djangorestframework==3.17.1
+djangorestframework_simplejwt==5.5.1
+flake8==6.1.0
+gunicorn==25.3.0
+idna==3.11
+iniconfig==2.3.0
+isort==6.1.0
+mccabe==0.7.0
+mypy_extensions==1.1.0
 packaging==26.0
-
-# Timezone data (works for all platforms)
-tzdata==2026.1
+pathspec==1.0.4
+platformdirs==4.9.4
+pluggy==1.6.0
+psycopg2-binary==2.9.11
+pycodestyle==2.11.1
+pyflakes==3.1.0
+PyJWT==2.11.0
+pytest==7.4.4
+pytest-django==4.12.0
+python-decouple==3.8
+python-dotenv==1.2.2
+redis==7.3.0
+requests==2.31.0
+sqlparse==0.5.5
+urllib3==2.6.3
+whitenoise==6.12.0
