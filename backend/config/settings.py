@@ -1,6 +1,6 @@
+import dj_database_url
 import os
 from pathlib import Path
-
 from decouple import config
 
 # ------------------------------
@@ -12,8 +12,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Security
 # ------------------------------
 SECRET_KEY = config("SECRET_KEY", default="your-secret-key")  # change in production
-DEBUG = config("DEBUG", default=False, cast=bool)  # Set to False for production
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'pharmacies-saas2-1.onrender.com']
+DEBUG = config("DEBUG", default=True, cast=bool)  # True for local dev, False for prod
+ALLOWED_HOSTS = ["localhost", "127.0.0.1", "pharmacies-saas2-1.onrender.com"]
 
 # ------------------------------
 # Installed apps
@@ -26,12 +26,14 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+
     # Third-party apps
     "django_extensions",
     "rest_framework",
     "rest_framework_simplejwt",
     "corsheaders",
     "whitenoise.runserver_nostatic",
+
     # Project apps
     "apps.users.apps.UsersConfig",
     "apps.deliveries.apps.DeliveriesConfig",
@@ -47,7 +49,7 @@ INSTALLED_APPS = [
     "apps.tracking",
 ]
 
-DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 # ------------------------------
 # Middleware
@@ -95,11 +97,14 @@ TEMPLATES = [
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
-        "NAME": config("DB_NAME", default="pharmacies_db"),
-        "USER": config("DB_USER", default="admin_user"),
-        "PASSWORD": config("DB_PASSWORD", default="Mimi@1986"),
-        "HOST": config("DB_HOST", default="localhost"),
-        "PORT": config("DB_PORT", default="5432"),
+        "NAME": "pharmacies_db",
+        "USER": "ihabib_4",
+        "PASSWORD": "<password>",
+        "HOST": "localhost",
+        "PORT": "5432",
+        "OPTIONS": {
+            "options": "-c search_path=public"
+        },
     }
 }
 
@@ -113,7 +118,7 @@ AUTH_USER_MODEL = "users.CustomUser"
 # ------------------------------
 STATIC_URL = "/static/"
 STATIC_ROOT = BASE_DIR / "staticfiles"
-STATICFILES_DIRS = [BASE_DIR / "static"]  # your React build should go here
+STATICFILES_DIRS = [BASE_DIR / "static"]
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 # ------------------------------
