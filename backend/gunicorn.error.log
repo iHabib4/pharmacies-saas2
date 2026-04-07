@@ -1,0 +1,83 @@
+[2026-03-10 21:02:08 +0300] [4405] [INFO] Starting gunicorn 25.1.0
+[2026-03-10 21:02:08 +0300] [4405] [ERROR] Connection in use: ('127.0.0.1', 8000)
+[2026-03-10 21:02:08 +0300] [4405] [ERROR] connection to ('127.0.0.1', 8000) failed: [Errno 48] Address already in use
+[2026-03-10 21:02:09 +0300] [4405] [ERROR] Connection in use: ('127.0.0.1', 8000)
+[2026-03-10 21:02:09 +0300] [4405] [ERROR] connection to ('127.0.0.1', 8000) failed: [Errno 48] Address already in use
+[2026-03-10 21:02:10 +0300] [4405] [ERROR] Connection in use: ('127.0.0.1', 8000)
+[2026-03-10 21:02:10 +0300] [4405] [ERROR] connection to ('127.0.0.1', 8000) failed: [Errno 48] Address already in use
+[2026-03-10 21:02:11 +0300] [4405] [ERROR] Connection in use: ('127.0.0.1', 8000)
+[2026-03-10 21:02:11 +0300] [4405] [ERROR] connection to ('127.0.0.1', 8000) failed: [Errno 48] Address already in use
+[2026-03-10 21:02:12 +0300] [4405] [ERROR] Connection in use: ('127.0.0.1', 8000)
+[2026-03-10 21:02:12 +0300] [4405] [ERROR] connection to ('127.0.0.1', 8000) failed: [Errno 48] Address already in use
+[2026-03-10 21:02:13 +0300] [4405] [ERROR] Can't connect to ('127.0.0.1', 8000)
+[2026-03-10 21:14:00 +0300] [4670] [INFO] Starting gunicorn 25.1.0
+[2026-03-10 21:14:00 +0300] [4670] [ERROR] Connection in use: ('127.0.0.1', 8000)
+[2026-03-10 21:14:00 +0300] [4670] [ERROR] connection to ('127.0.0.1', 8000) failed: [Errno 48] Address already in use
+[2026-03-10 21:14:01 +0300] [4670] [ERROR] Connection in use: ('127.0.0.1', 8000)
+[2026-03-10 21:14:01 +0300] [4670] [ERROR] connection to ('127.0.0.1', 8000) failed: [Errno 48] Address already in use
+[2026-03-10 21:14:02 +0300] [4670] [ERROR] Connection in use: ('127.0.0.1', 8000)
+[2026-03-10 21:14:02 +0300] [4670] [ERROR] connection to ('127.0.0.1', 8000) failed: [Errno 48] Address already in use
+[2026-03-10 21:14:03 +0300] [4670] [ERROR] Connection in use: ('127.0.0.1', 8000)
+[2026-03-10 21:14:03 +0300] [4670] [ERROR] connection to ('127.0.0.1', 8000) failed: [Errno 48] Address already in use
+[2026-03-10 21:14:04 +0300] [4670] [ERROR] Connection in use: ('127.0.0.1', 8000)
+[2026-03-10 21:14:04 +0300] [4670] [ERROR] connection to ('127.0.0.1', 8000) failed: [Errno 48] Address already in use
+[2026-03-10 21:14:05 +0300] [4670] [ERROR] Can't connect to ('127.0.0.1', 8000)
+[2026-03-10 21:16:48 +0300] [4748] [INFO] Starting gunicorn 25.1.0
+[2026-03-10 21:16:48 +0300] [4748] [INFO] Listening at: http://127.0.0.1:8000 (4748)
+[2026-03-10 21:16:48 +0300] [4748] [INFO] Using worker: sync
+[2026-03-10 21:16:48 +0300] [4748] [INFO] Control socket listening at /Users/user/pharmacies_saas/backend/gunicorn.ctl
+[2026-03-10 21:16:48 +0300] [4749] [INFO] Booting worker with pid: 4749
+[2026-03-10 21:16:48 +0300] [4750] [INFO] Booting worker with pid: 4750
+[2026-03-10 21:16:48 +0300] [4751] [INFO] Booting worker with pid: 4751
+[2026-03-10 21:17:17 +0300] [4748] [ERROR] Worker (pid:4751) was sent SIGKILL! Perhaps out of memory?
+[2026-03-10 21:17:17 +0300] [4770] [INFO] Booting worker with pid: 4770
+[2026-03-10 21:17:18 +0300] [4748] [ERROR] Worker (pid:4749) was sent SIGKILL! Perhaps out of memory?
+[2026-03-10 21:17:18 +0300] [4773] [INFO] Booting worker with pid: 4773
+[2026-03-10 21:18:40 +0300] [4748] [ERROR] Worker (pid:4773) was sent SIGKILL! Perhaps out of memory?
+[2026-03-10 21:18:40 +0300] [4801] [INFO] Booting worker with pid: 4801
+[2026-03-10 21:18:41 +0300] [4748] [ERROR] Worker (pid:4750) was sent SIGKILL! Perhaps out of memory?
+[2026-03-10 21:18:41 +0300] [4804] [INFO] Booting worker with pid: 4804
+[2026-03-10 21:21:26 +0300] [4748] [INFO] Handling signal: term
+[2026-03-10 18:21:26 +0000] [4804] [INFO] Worker exiting (pid: 4804)
+[2026-03-10 18:21:26 +0000] [4801] [INFO] Worker exiting (pid: 4801)
+[2026-03-10 18:21:26 +0000] [4770] [INFO] Worker exiting (pid: 4770)
+[2026-03-10 21:21:27 +0300] [4869] [INFO] Starting gunicorn 25.1.0
+[2026-03-10 21:21:27 +0300] [4869] [INFO] Listening at: http://127.0.0.1:8000 (4869)
+[2026-03-10 21:21:27 +0300] [4869] [INFO] Using worker: sync
+[2026-03-10 21:21:27 +0300] [4869] [INFO] Control socket listening at /Users/user/pharmacies_saas/backend/gunicorn.ctl
+[2026-03-10 21:21:27 +0300] [4870] [INFO] Booting worker with pid: 4870
+[2026-03-10 21:21:27 +0300] [4748] [INFO] Shutting down: Master
+[2026-03-10 21:22:23 +0300] [4869] [INFO] Handling signal: int
+[2026-03-10 18:22:23 +0000] [4870] [INFO] Worker exiting (pid: 4870)
+[2026-03-10 21:22:24 +0300] [4869] [INFO] Shutting down: Master
+[2026-03-10 21:22:58 +0300] [4907] [INFO] Starting gunicorn 25.1.0
+[2026-03-10 21:22:58 +0300] [4907] [INFO] Listening at: http://127.0.0.1:8000 (4907)
+[2026-03-10 21:22:58 +0300] [4907] [INFO] Using worker: sync
+[2026-03-10 21:22:58 +0300] [4907] [INFO] Control socket listening at /Users/user/pharmacies_saas/backend/gunicorn.ctl
+[2026-03-10 21:22:58 +0300] [4908] [INFO] Booting worker with pid: 4908
+[2026-03-10 21:24:03 +0300] [4907] [ERROR] Worker (pid:4908) was sent SIGKILL! Perhaps out of memory?
+[2026-03-10 21:24:03 +0300] [5325] [INFO] Booting worker with pid: 5325
+[2026-03-10 21:24:04 +0300] [4907] [ERROR] Worker (pid:5325) was sent SIGKILL! Perhaps out of memory?
+[2026-03-10 21:24:04 +0300] [5328] [INFO] Booting worker with pid: 5328
+[2026-03-10 21:24:57 +0300] [4907] [INFO] Handling signal: int
+[2026-03-10 18:24:57 +0000] [5328] [INFO] Worker exiting (pid: 5328)
+[2026-03-10 21:24:58 +0300] [4907] [INFO] Shutting down: Master
+[2026-03-10 21:25:00 +0300] [5413] [INFO] Starting gunicorn 25.1.0
+[2026-03-10 21:25:00 +0300] [5413] [INFO] Listening at: http://127.0.0.1:8000 (5413)
+[2026-03-10 21:25:00 +0300] [5413] [INFO] Using worker: gthread
+[2026-03-10 21:25:00 +0300] [5413] [INFO] Control socket listening at /Users/user/pharmacies_saas/backend/gunicorn.ctl
+[2026-03-10 21:25:00 +0300] [5414] [INFO] Booting worker with pid: 5414
+[2026-03-10 21:26:04 +0300] [5413] [ERROR] Worker (pid:5414) was sent SIGKILL! Perhaps out of memory?
+[2026-03-10 21:26:04 +0300] [5438] [INFO] Booting worker with pid: 5438
+[2026-03-10 21:26:05 +0300] [5413] [ERROR] Worker (pid:5438) was sent SIGKILL! Perhaps out of memory?
+[2026-03-10 21:26:05 +0300] [5441] [INFO] Booting worker with pid: 5441
+[2026-03-10 21:26:28 +0300] [5413] [ERROR] Worker (pid:5441) was sent SIGKILL! Perhaps out of memory?
+[2026-03-10 21:26:28 +0300] [5465] [INFO] Booting worker with pid: 5465
+[2026-03-10 21:27:52 +0300] [5413] [INFO] Handling signal: hup
+[2026-03-10 21:27:52 +0300] [5413] [INFO] Hang up: Master
+[2026-03-10 21:27:52 +0300] [5413] [WARNING] Worker (pid:5465) was sent SIGHUP!
+[2026-03-10 21:27:52 +0300] [5556] [INFO] Booting worker with pid: 5556
+[2026-03-10 21:28:12 +0300] [5413] [INFO] Handling signal: term
+[2026-03-10 18:28:12 +0000] [5556] [INFO] Worker exiting (pid: 5556)
+[2026-03-10 21:28:12 +0300] [5413] [INFO] Worker (pid:5556) was sent SIGTERM!
+[2026-03-10 21:28:12 +0300] [5413] [INFO] Shutting down: Master

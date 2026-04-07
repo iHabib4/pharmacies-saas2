@@ -1,0 +1,22 @@
+{% extends "base.html" %}  {# Or your project base template #}
+
+{% block content %}
+<h2>Select a Rider for Your Order</h2>
+
+{% if active_riders %}
+    <form method="post">
+        {% csrf_token %}
+        <label for="rider">Choose a Rider:</label>
+        <select name="rider_id" id="rider" required>
+            {% for rider in active_riders %}
+                <option value="{{ rider.id }}">
+                    {{ rider.user.get_full_name }} ({{ rider.user.email }})
+                </option>
+            {% endfor %}
+        </select>
+        <button type="submit">Assign Rider</button>
+    </form>
+{% else %}
+    <p>No active riders available at the moment.</p>
+{% endif %}
+{% endblock %}

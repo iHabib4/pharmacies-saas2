@@ -1,0 +1,41 @@
+<h2>Rider Performance Dashboard</h2>
+<table border="1">
+    <thead>
+        <tr>
+            <th>Rider Email</th>
+            <th>Completed Deliveries</th>
+            <th>Failed Deliveries</th>
+            <th>Avg Delivery Time (min)</th>
+            <th>Revenue ($)</th>
+        </tr>
+    </thead>
+    <tbody id="rider-table-body">
+        <!-- rows will be inserted here -->
+    </tbody>
+</table>
+
+<script>
+async function fetchRiderPerformance() {
+    const response = await fetch('/api/analytics/riders/');
+    const data = await response.json();
+
+    const tbody = document.getElementById('rider-table-body');
+    tbody.innerHTML = '';
+
+    data.forEach(rider => {
+        const row = document.createElement('tr');
+        row.innerHTML = `
+            <td>${rider.rider_email}</td>
+            <td>${rider.completed_deliveries}</td>
+            <td>${rider.failed_deliveries}</td>
+            <td>${rider.average_delivery_time_minutes || '-'}</td>
+            <td>${rider.revenue.toFixed(2)}</td>
+        `;
+        tbody.appendChild(row);
+    });
+}
+
+// Initial fetch, then refresh every 60 seconds
+fetchRiderPerformance();
+setInterval(fetchRiderPerformance, 60000);
+</script>

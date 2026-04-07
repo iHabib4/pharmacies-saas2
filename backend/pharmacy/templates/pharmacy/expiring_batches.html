@@ -1,0 +1,11 @@
+<h2>Expiring Medicine Batches</h2>
+
+{% if warnings %}
+  <ul>
+  {% for batch in warnings %}
+    <li>⚠  {{ batch.medicine.name }} batch expires in {{ batch.expiry_date|date:"Y-m-d" }}</li>
+  {% endfor %}
+  </ul>
+{% else %}
+  <p>No expiring batches within the next 30 days.</p>
+{% endif %}
