@@ -1,7 +1,9 @@
-import dj_database_url
+# config/settings.py
+
 import os
 from pathlib import Path
 from decouple import config
+import dj_database_url
 
 # ------------------------------
 # Paths
@@ -51,7 +53,7 @@ INSTALLED_APPS = [
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
-# ------------------------------
+# ------------------------------ 
 # Middleware
 # ------------------------------
 MIDDLEWARE = [
@@ -95,17 +97,11 @@ TEMPLATES = [
 # Database (PostgreSQL)
 # ------------------------------
 DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.postgresql",
-        "NAME": "pharmacies_db",
-        "USER": "ihabib_4",
-        "PASSWORD": "<password>",
-        "HOST": "localhost",
-        "PORT": "5432",
-        "OPTIONS": {
-            "options": "-c search_path=public"
-        },
-    }
+    "default": dj_database_url.config(
+        default=config("DATABASE_URL"),  # <-- use decouple's config
+        conn_max_age=600,
+        ssl_require=True
+    )
 }
 
 # ------------------------------
@@ -137,6 +133,7 @@ REST_FRAMEWORK = {
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
     "http://127.0.0.1:3000",
+    # Add production frontend URL if applicable
 ]
 
 # ------------------------------
