@@ -12,6 +12,7 @@ python-decouple = "^3.8"
 dj-database-url = "^3.1.2"
 django-extensions = "^4.1"
 djangorestframework = "^3.17.1"
+djangorestframework-simplejwt = "^5.5.1"
 
 [tool.poetry.group.dev.dependencies]
 pytest = "^7.0"
