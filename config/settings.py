@@ -1,32 +1,49 @@
 import os
 from pathlib import Path
 from datetime import timedelta
+
 from decouple import config
 import dj_database_url
 
+
+# --------------------------------------------------
+# BASE DIRECTORY
+# --------------------------------------------------
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
-# ------------------------------
+# --------------------------------------------------
 # SECURITY
-# ------------------------------
-SECRET_KEY = config("SECRET_KEY", default="your-secret-key")
+# --------------------------------------------------
+SECRET_KEY = config(
+    "SECRET_KEY",
+    default="django-insecure-change-this-in-production"
+)
+
 DEBUG = config("DEBUG", default=True, cast=bool)
 
 ALLOWED_HOSTS = [
     "localhost",
     "127.0.0.1",
+    "0.0.0.0",
+
+    # Local network testing
     "192.168.0.177",
     "192.168.1.10",
-    "0.0.0.0",
-    "pharmacies-saas2-1.onrender.com",
+
+    # Koyeb deployment
+    ".koyeb.app",
+
+    # Railway deployment (optional)
+    ".up.railway.app",
 ]
 
 
-# ------------------------------
-# APPS
-# ------------------------------
+# --------------------------------------------------
+# INSTALLED APPS
+# --------------------------------------------------
 INSTALLED_APPS = [
+    # DJANGO APPS
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -34,7 +51,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
 
-    # THIRD PARTY
+    # THIRD PARTY APPS
     "corsheaders",
     "rest_framework",
     "rest_framework_simplejwt.token_blacklist",
@@ -61,40 +78,52 @@ INSTALLED_APPS = [
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 
-# ------------------------------
+# --------------------------------------------------
 # MIDDLEWARE
-# ------------------------------
+# --------------------------------------------------
 MIDDLEWARE = [
+    # CORS
     "corsheaders.middleware.CorsMiddleware",
 
+    # SECURITY
     "django.middleware.security.SecurityMiddleware",
+
+    # STATIC FILES
     "whitenoise.middleware.WhiteNoiseMiddleware",
 
+    # DJANGO
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
 
-    # Keep CSRF enabled for admin safety
+    # KEEP CSRF ENABLED
     "django.middleware.csrf.CsrfViewMiddleware",
 
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 
-    # ⚠️ CUSTOM MIDDLEWARE (potential risk point)
+    # CUSTOM
     "apps.tracking.middleware.AuditMiddleware",
 ]
 
+
+# --------------------------------------------------
+# URLS / WSGI
+# --------------------------------------------------
 ROOT_URLCONF = "config.urls"
+
 WSGI_APPLICATION = "config.wsgi.application"
 
 
-# ------------------------------
+# --------------------------------------------------
 # TEMPLATES
-# ------------------------------
+# --------------------------------------------------
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [BASE_DIR / "templates"],
+        "DIRS": [
+            BASE_DIR / "templates"
+        ],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -108,21 +137,21 @@ TEMPLATES = [
 ]
 
 
-# ------------------------------
-# DATABASE
-# ------------------------------
+# --------------------------------------------------
+# DATABASE (NEON POSTGRESQL)
+# --------------------------------------------------
 DATABASES = {
     "default": dj_database_url.config(
         default=config("DATABASE_URL"),
         conn_max_age=600,
-        ssl_require=not DEBUG,
+        ssl_require=True,
     )
 }
 
 
-# ------------------------------
-# AUTH
-# ------------------------------
+# --------------------------------------------------
+# CUSTOM USER MODEL
+# --------------------------------------------------
 AUTH_USER_MODEL = "users.CustomUser"
 
 AUTHENTICATION_BACKENDS = [
@@ -130,70 +159,113 @@ AUTHENTICATION_BACKENDS = [
 ]
 
 
-# ------------------------------
-# REST FRAMEWORK
-# ------------------------------
+# --------------------------------------------------
+# DJANGO REST FRAMEWORK
+# --------------------------------------------------
 REST_FRAMEWORK = {
     "DEFAULT_AUTHENTICATION_CLASSES": (
         "rest_framework_simplejwt.authentication.JWTAuthentication",
     ),
+
     "DEFAULT_PERMISSION_CLASSES": (
         "rest_framework.permissions.AllowAny",
     ),
+
     "DEFAULT_RENDERER_CLASSES": (
         "rest_framework.renderers.JSONRenderer",
     ),
 }
 
 
-# ------------------------------
-# JWT
-# ------------------------------
+# --------------------------------------------------
+# JWT SETTINGS
+# --------------------------------------------------
 SIMPLE_JWT = {
     "ACCESS_TOKEN_LIFETIME": timedelta(minutes=15),
+
     "REFRESH_TOKEN_LIFETIME": timedelta(days=7),
+
     "ROTATE_REFRESH_TOKENS": True,
+
     "BLACKLIST_AFTER_ROTATION": True,
+
     "AUTH_HEADER_TYPES": ("Bearer",),
 }
 
 
-# ------------------------------
+# --------------------------------------------------
 # STATIC FILES
-# ------------------------------
+# --------------------------------------------------
 STATIC_URL = "/static/"
+
 STATIC_ROOT = BASE_DIR / "staticfiles"
-STATICFILES_DIRS = [BASE_DIR / "static"]
 
-STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+STATICFILES_DIRS = [
+    BASE_DIR / "static"
+]
+
+STATICFILES_STORAGE = (
+    "whitenoise.storage.CompressedManifestStaticFilesStorage"
+)
 
 
-# ------------------------------
-# CORS
-# ------------------------------
+# --------------------------------------------------
+# MEDIA FILES
+# --------------------------------------------------
+MEDIA_URL = "/media/"
+
+MEDIA_ROOT = BASE_DIR / "media"
+
+
+# --------------------------------------------------
+# CORS SETTINGS
+# --------------------------------------------------
+# DEVELOPMENT ONLY
 CORS_ALLOW_ALL_ORIGINS = True
 
+# PRODUCTION EXAMPLE:
+# CORS_ALLOWED_ORIGINS = [
+#     "https://yourfrontend.vercel.app",
+# ]
 
-# ------------------------------
-# SECURITY (PRODUCTION)
-# ------------------------------
-SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
+
+# --------------------------------------------------
+# SECURITY SETTINGS
+# --------------------------------------------------
+SECURE_PROXY_SSL_HEADER = (
+    "HTTP_X_FORWARDED_PROTO",
+    "https"
+)
 
 if not DEBUG:
     SECURE_HSTS_SECONDS = 31536000
+
     SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+
     SECURE_HSTS_PRELOAD = True
 
     SESSION_COOKIE_SECURE = True
+
     CSRF_COOKIE_SECURE = True
 
 
-# ------------------------------
-# PAYMENT (Tigo Pesa)
-# ------------------------------
-TIGO_API_URL = config("TIGO_API_URL", default="https://sandbox.tigoapi.com")
-TIGO_API_KEY = config("TIGO_API_KEY", default="")
-TIGO_MERCHANT_ID = config("TIGO_MERCHANT_ID", default="")
+# --------------------------------------------------
+# PAYMENT SETTINGS (TIGO PESA)
+# --------------------------------------------------
+TIGO_API_URL = config(
+    "TIGO_API_URL",
+    default="https://sandbox.tigoapi.com"
+)
+
+TIGO_API_KEY = config(
+    "TIGO_API_KEY",
+    default=""
+)
+
+TIGO_MERCHANT_ID = config(
+    "TIGO_MERCHANT_ID",
+    default=""
+)
 
 TIGO_CALLBACK_URL = config(
     "TIGO_CALLBACK_URL",
