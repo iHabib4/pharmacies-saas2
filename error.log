@@ -1,0 +1,217 @@
+[2026-03-10 11:14:45 +0300] [14953] [INFO] Starting gunicorn 25.1.0
+[2026-03-10 11:14:45 +0300] [14953] [INFO] Listening at: http://127.0.0.1:8000 (14953)
+[2026-03-10 11:14:45 +0300] [14953] [INFO] Using worker: sync
+[2026-03-10 11:14:45 +0300] [14953] [INFO] Control socket listening at /Users/user/pharmacies_saas/backend/gunicorn.ctl
+[2026-03-10 11:14:45 +0300] [14957] [INFO] Booting worker with pid: 14957
+[2026-03-10 11:14:45 +0300] [14957] [ERROR] Exception in worker process
+Traceback (most recent call last):
+  File "/Users/user/pharmacies_saas/venv_prod/lib/python3.14/site-packages/gunicorn/arbiter.py", line 708, in spawn_worker
+    worker.init_process()
+    ~~~~~~~~~~~~~~~~~~~^^
+  File "/Users/user/pharmacies_saas/venv_prod/lib/python3.14/site-packages/gunicorn/workers/base.py", line 136, in init_process
+    self.load_wsgi()
+    ~~~~~~~~~~~~~~^^
+  File "/Users/user/pharmacies_saas/venv_prod/lib/python3.14/site-packages/gunicorn/workers/base.py", line 148, in load_wsgi
+    self.wsgi = self.app.wsgi()
+                ~~~~~~~~~~~~~^^
+  File "/Users/user/pharmacies_saas/venv_prod/lib/python3.14/site-packages/gunicorn/app/base.py", line 66, in wsgi
+    self.callable = self.load()
+                    ~~~~~~~~~^^
+  File "/Users/user/pharmacies_saas/venv_prod/lib/python3.14/site-packages/gunicorn/app/wsgiapp.py", line 57, in load
+    return self.load_wsgiapp()
+           ~~~~~~~~~~~~~~~~~^^
+  File "/Users/user/pharmacies_saas/venv_prod/lib/python3.14/site-packages/gunicorn/app/wsgiapp.py", line 47, in load_wsgiapp
+    return util.import_app(self.app_uri)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+  File "/Users/user/pharmacies_saas/venv_prod/lib/python3.14/site-packages/gunicorn/util.py", line 377, in import_app
+    mod = importlib.import_module(module)
+  File "/opt/homebrew/Cellar/python@3.14/3.14.3_1/Frameworks/Python.framework/Versions/3.14/lib/python3.14/importlib/__init__.py", line 88, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1398, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1371, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1314, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 491, in _call_with_frames_removed
+  File "<frozen importlib._bootstrap>", line 1398, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1371, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1335, in _find_and_load_unlocked
+ModuleNotFoundError: No module named 'pharmacies_saas'
+[2026-03-10 11:14:45 +0300] [14957] [INFO] Worker exiting (pid: 14957)
+[2026-03-10 11:14:45 +0300] [14958] [INFO] Booting worker with pid: 14958
+[2026-03-10 11:14:45 +0300] [14958] [ERROR] Exception in worker process
+Traceback (most recent call last):
+  File "/Users/user/pharmacies_saas/venv_prod/lib/python3.14/site-packages/gunicorn/arbiter.py", line 708, in spawn_worker
+    worker.init_process()
+    ~~~~~~~~~~~~~~~~~~~^^
+  File "/Users/user/pharmacies_saas/venv_prod/lib/python3.14/site-packages/gunicorn/workers/base.py", line 136, in init_process
+    self.load_wsgi()
+    ~~~~~~~~~~~~~~^^
+  File "/Users/user/pharmacies_saas/venv_prod/lib/python3.14/site-packages/gunicorn/workers/base.py", line 148, in load_wsgi
+    self.wsgi = self.app.wsgi()
+                ~~~~~~~~~~~~~^^
+  File "/Users/user/pharmacies_saas/venv_prod/lib/python3.14/site-packages/gunicorn/app/base.py", line 66, in wsgi
+    self.callable = self.load()
+                    ~~~~~~~~~^^
+  File "/Users/user/pharmacies_saas/venv_prod/lib/python3.14/site-packages/gunicorn/app/wsgiapp.py", line 57, in load
+    return self.load_wsgiapp()
+           ~~~~~~~~~~~~~~~~~^^
+  File "/Users/user/pharmacies_saas/venv_prod/lib/python3.14/site-packages/gunicorn/app/wsgiapp.py", line 47, in load_wsgiapp
+    return util.import_app(self.app_uri)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+  File "/Users/user/pharmacies_saas/venv_prod/lib/python3.14/site-packages/gunicorn/util.py", line 377, in import_app
+    mod = importlib.import_module(module)
+  File "/opt/homebrew/Cellar/python@3.14/3.14.3_1/Frameworks/Python.framework/Versions/3.14/lib/python3.14/importlib/__init__.py", line 88, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1398, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1371, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1314, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 491, in _call_with_frames_removed
+  File "<frozen importlib._bootstrap>", line 1398, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1371, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1335, in _find_and_load_unlocked
+ModuleNotFoundError: No module named 'pharmacies_saas'
+[2026-03-10 11:14:45 +0300] [14958] [INFO] Worker exiting (pid: 14958)
+[2026-03-10 11:14:45 +0300] [14959] [INFO] Booting worker with pid: 14959
+[2026-03-10 11:14:45 +0300] [14959] [ERROR] Exception in worker process
+Traceback (most recent call last):
+  File "/Users/user/pharmacies_saas/venv_prod/lib/python3.14/site-packages/gunicorn/arbiter.py", line 708, in spawn_worker
+    worker.init_process()
+    ~~~~~~~~~~~~~~~~~~~^^
+  File "/Users/user/pharmacies_saas/venv_prod/lib/python3.14/site-packages/gunicorn/workers/base.py", line 136, in init_process
+    self.load_wsgi()
+    ~~~~~~~~~~~~~~^^
+  File "/Users/user/pharmacies_saas/venv_prod/lib/python3.14/site-packages/gunicorn/workers/base.py", line 148, in load_wsgi
+    self.wsgi = self.app.wsgi()
+                ~~~~~~~~~~~~~^^
+  File "/Users/user/pharmacies_saas/venv_prod/lib/python3.14/site-packages/gunicorn/app/base.py", line 66, in wsgi
+    self.callable = self.load()
+                    ~~~~~~~~~^^
+  File "/Users/user/pharmacies_saas/venv_prod/lib/python3.14/site-packages/gunicorn/app/wsgiapp.py", line 57, in load
+    return self.load_wsgiapp()
+           ~~~~~~~~~~~~~~~~~^^
+  File "/Users/user/pharmacies_saas/venv_prod/lib/python3.14/site-packages/gunicorn/app/wsgiapp.py", line 47, in load_wsgiapp
+    return util.import_app(self.app_uri)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+  File "/Users/user/pharmacies_saas/venv_prod/lib/python3.14/site-packages/gunicorn/util.py", line 377, in import_app
+    mod = importlib.import_module(module)
+  File "/opt/homebrew/Cellar/python@3.14/3.14.3_1/Frameworks/Python.framework/Versions/3.14/lib/python3.14/importlib/__init__.py", line 88, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1398, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1371, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1314, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 491, in _call_with_frames_removed
+  File "<frozen importlib._bootstrap>", line 1398, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1371, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1335, in _find_and_load_unlocked
+ModuleNotFoundError: No module named 'pharmacies_saas'
+[2026-03-10 11:14:45 +0300] [14959] [INFO] Worker exiting (pid: 14959)
+[2026-03-10 11:14:46 +0300] [14953] [ERROR] Worker (pid:14959) exited with code 3.
+[2026-03-10 11:14:46 +0300] [14953] [ERROR] Worker (pid:14958) exited with code 3.
+[2026-03-10 11:17:10 +0300] [14987] [INFO] Starting gunicorn 25.1.0
+[2026-03-10 11:17:10 +0300] [14987] [INFO] Listening at: http://127.0.0.1:8000 (14987)
+[2026-03-10 11:17:10 +0300] [14987] [INFO] Using worker: sync
+[2026-03-10 11:17:10 +0300] [14987] [INFO] Control socket listening at /Users/user/pharmacies_saas/backend/gunicorn.ctl
+[2026-03-10 11:17:10 +0300] [14988] [INFO] Booting worker with pid: 14988
+[2026-03-10 11:17:10 +0300] [14989] [INFO] Booting worker with pid: 14989
+[2026-03-10 11:17:10 +0300] [14990] [INFO] Booting worker with pid: 14990
+[2026-03-10 11:19:36 +0300] [14987] [INFO] Handling signal: int
+[2026-03-10 08:19:36 +0000] [14990] [INFO] Worker exiting (pid: 14990)
+[2026-03-10 08:19:36 +0000] [14988] [INFO] Worker exiting (pid: 14988)
+[2026-03-10 08:19:36 +0000] [14989] [INFO] Worker exiting (pid: 14989)
+[2026-03-10 11:19:36 +0300] [14987] [INFO] Shutting down: Master
+[2026-03-10 11:21:00 +0300] [15017] [INFO] Starting gunicorn 25.1.0
+[2026-03-10 11:21:00 +0300] [15017] [INFO] Listening at: http://127.0.0.1:8000 (15017)
+[2026-03-10 11:21:00 +0300] [15017] [INFO] Using worker: sync
+[2026-03-10 11:21:00 +0300] [15017] [INFO] Control socket listening at /Users/user/pharmacies_saas/backend/gunicorn.ctl
+[2026-03-10 11:21:00 +0300] [15018] [INFO] Booting worker with pid: 15018
+[2026-03-10 11:21:00 +0300] [15019] [INFO] Booting worker with pid: 15019
+[2026-03-10 11:21:00 +0300] [15020] [INFO] Booting worker with pid: 15020
+[2026-03-10 11:23:01 +0300] [15017] [CRITICAL] WORKER TIMEOUT (pid:15019)
+[2026-03-10 08:23:01 +0000] [15019] [ERROR] Error handling request (no URI read)
+Traceback (most recent call last):
+  File "/Users/user/pharmacies_saas/venv_prod/lib/python3.14/site-packages/gunicorn/workers/sync.py", line 141, in handle
+    req = next(parser)
+  File "/Users/user/pharmacies_saas/venv_prod/lib/python3.14/site-packages/gunicorn/http/parser.py", line 56, in __next__
+    self.mesg = self.mesg_class(self.cfg, self.unreader, self.source_addr, self.req_count)
+                ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/user/pharmacies_saas/venv_prod/lib/python3.14/site-packages/gunicorn/http/message.py", line 324, in __init__
+    super().__init__(cfg, unreader, peer_addr)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/user/pharmacies_saas/venv_prod/lib/python3.14/site-packages/gunicorn/http/message.py", line 110, in __init__
+    unused = self.parse(self.unreader)
+  File "/Users/user/pharmacies_saas/venv_prod/lib/python3.14/site-packages/gunicorn/http/message.py", line 336, in parse
+    self.read_into(unreader, buf, stop=True)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/user/pharmacies_saas/venv_prod/lib/python3.14/site-packages/gunicorn/http/message.py", line 375, in read_into
+    data = unreader.read()
+  File "/Users/user/pharmacies_saas/venv_prod/lib/python3.14/site-packages/gunicorn/http/unreader.py", line 36, in read
+    d = self.chunk()
+  File "/Users/user/pharmacies_saas/venv_prod/lib/python3.14/site-packages/gunicorn/http/unreader.py", line 65, in chunk
+    return self.sock.recv(self.mxchunk)
+           ~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+  File "/Users/user/pharmacies_saas/venv_prod/lib/python3.14/site-packages/gunicorn/workers/base.py", line 198, in handle_abort
+    sys.exit(1)
+    ~~~~~~~~^^^
+SystemExit: 1
+[2026-03-10 08:23:01 +0000] [15019] [INFO] Worker exiting (pid: 15019)
+[2026-03-10 11:23:01 +0300] [15047] [INFO] Booting worker with pid: 15047
+[2026-03-10 11:23:38 +0300] [15017] [INFO] Handling signal: int
+[2026-03-10 08:23:38 +0000] [15047] [INFO] Worker exiting (pid: 15047)
+[2026-03-10 08:23:38 +0000] [15020] [INFO] Worker exiting (pid: 15020)
+[2026-03-10 08:23:38 +0000] [15018] [INFO] Worker exiting (pid: 15018)
+[2026-03-10 11:23:39 +0300] [15017] [INFO] Shutting down: Master
+[2026-03-10 11:25:11 +0300] [15069] [INFO] Starting gunicorn 25.1.0
+[2026-03-10 11:25:11 +0300] [15069] [INFO] Listening at: http://127.0.0.1:8000 (15069)
+[2026-03-10 11:25:11 +0300] [15069] [INFO] Using worker: sync
+[2026-03-10 11:25:11 +0300] [15069] [INFO] Control socket listening at /Users/user/pharmacies_saas/backend/gunicorn.ctl
+[2026-03-10 11:25:11 +0300] [15070] [INFO] Booting worker with pid: 15070
+[2026-03-10 11:25:11 +0300] [15071] [INFO] Booting worker with pid: 15071
+[2026-03-10 11:25:11 +0300] [15072] [INFO] Booting worker with pid: 15072
+[2026-03-10 11:26:01 +0300] [15069] [ERROR] Worker (pid:15072) was sent SIGKILL! Perhaps out of memory?
+[2026-03-10 11:26:01 +0300] [15095] [INFO] Booting worker with pid: 15095
+[2026-03-10 11:26:02 +0300] [15069] [ERROR] Worker (pid:15095) was sent SIGKILL! Perhaps out of memory?
+[2026-03-10 11:26:02 +0300] [15100] [INFO] Booting worker with pid: 15100
+[2026-03-10 11:26:03 +0300] [15069] [ERROR] Worker (pid:15071) was sent SIGKILL! Perhaps out of memory?
+[2026-03-10 11:26:03 +0300] [15103] [INFO] Booting worker with pid: 15103
+[2026-03-10 11:26:03 +0300] [15069] [ERROR] Worker (pid:15100) was sent SIGKILL! Perhaps out of memory?
+[2026-03-10 11:26:03 +0300] [15104] [INFO] Booting worker with pid: 15104
+[2026-03-10 11:26:03 +0300] [15069] [ERROR] Worker (pid:15070) was sent SIGKILL! Perhaps out of memory?
+[2026-03-10 11:26:03 +0300] [15105] [INFO] Booting worker with pid: 15105
+[2026-03-10 11:26:21 +0300] [15069] [ERROR] Worker (pid:15104) was sent SIGKILL! Perhaps out of memory?
+[2026-03-10 11:26:21 +0300] [15144] [INFO] Booting worker with pid: 15144
+[2026-03-10 11:26:52 +0300] [15069] [CRITICAL] WORKER TIMEOUT (pid:15105)
+[2026-03-10 08:26:52 +0000] [15105] [ERROR] Error handling request (no URI read)
+Traceback (most recent call last):
+  File "/Users/user/pharmacies_saas/venv_prod/lib/python3.14/site-packages/gunicorn/workers/sync.py", line 141, in handle
+    req = next(parser)
+  File "/Users/user/pharmacies_saas/venv_prod/lib/python3.14/site-packages/gunicorn/http/parser.py", line 56, in __next__
+    self.mesg = self.mesg_class(self.cfg, self.unreader, self.source_addr, self.req_count)
+                ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/user/pharmacies_saas/venv_prod/lib/python3.14/site-packages/gunicorn/http/message.py", line 324, in __init__
+    super().__init__(cfg, unreader, peer_addr)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/user/pharmacies_saas/venv_prod/lib/python3.14/site-packages/gunicorn/http/message.py", line 110, in __init__
+    unused = self.parse(self.unreader)
+  File "/Users/user/pharmacies_saas/venv_prod/lib/python3.14/site-packages/gunicorn/http/message.py", line 336, in parse
+    self.read_into(unreader, buf, stop=True)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/user/pharmacies_saas/venv_prod/lib/python3.14/site-packages/gunicorn/http/message.py", line 375, in read_into
+    data = unreader.read()
+  File "/Users/user/pharmacies_saas/venv_prod/lib/python3.14/site-packages/gunicorn/http/unreader.py", line 36, in read
+    d = self.chunk()
+  File "/Users/user/pharmacies_saas/venv_prod/lib/python3.14/site-packages/gunicorn/http/unreader.py", line 65, in chunk
+    return self.sock.recv(self.mxchunk)
+           ~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+  File "/Users/user/pharmacies_saas/venv_prod/lib/python3.14/site-packages/gunicorn/workers/base.py", line 198, in handle_abort
+    sys.exit(1)
+    ~~~~~~~~^^^
+SystemExit: 1
+[2026-03-10 08:26:52 +0000] [15105] [INFO] Worker exiting (pid: 15105)
+[2026-03-10 11:26:52 +0300] [15173] [INFO] Booting worker with pid: 15173
+[2026-03-10 11:28:58 +0300] [15069] [INFO] Handling signal: int
+[2026-03-10 08:28:58 +0000] [15173] [INFO] Worker exiting (pid: 15173)
+[2026-03-10 08:28:58 +0000] [15144] [INFO] Worker exiting (pid: 15144)
+[2026-03-10 08:28:58 +0000] [15103] [INFO] Worker exiting (pid: 15103)
+[2026-03-10 11:28:58 +0300] [15069] [INFO] Shutting down: Master

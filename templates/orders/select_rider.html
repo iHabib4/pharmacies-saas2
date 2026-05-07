@@ -1,0 +1,20 @@
+<form method="post" action="{% url 'orders:create_order' %}">
+    {% csrf_token %}
+    
+    <!-- Other order fields like products, pharmacy, total_price -->
+    
+    <label for="rider">Select Rider:</label>
+    <select name="rider" id="rider" required>
+        <option value="">-- Choose an active rider --</option>
+        {% for rider in active_riders %}
+            <option value="{{ rider.id }}">
+                {{ rider.user.get_full_name }} 
+                {% if rider.vehicle_type %} ({{ rider.vehicle_type }}){% endif %}
+            </option>
+        {% empty %}
+            <option value="">No active riders available</option>
+        {% endfor %}
+    </select>
+
+    <button type="submit">Assign Rider</button>
+</form>

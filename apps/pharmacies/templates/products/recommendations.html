@@ -1,0 +1,18 @@
+<h2>Recommended Products</h2>
+
+{% if recommended_products %}
+    <ul>
+    {% for product in recommended_products %}
+        <li>{{ product.name }}</li>
+    {% endfor %}
+    </ul>
+    
+    <p style="color: darkorange; font-weight: bold;">{{ warning_message }}</p>
+    
+    {% if excluded_count > 0 %}
+        <p style="color: red;">⚠ {{ excluded_count }} prescription-only product(s) were excluded.</p>
+    {% endif %}
+    
+{% else %}
+    <p>No OTC products available for your selection.</p>
+{% endif %}

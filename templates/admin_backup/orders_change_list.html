@@ -1,0 +1,31 @@
+{% extends "admin/change_list.html" %}
+
+{% block content %}
+
+<h2>Commission & Vendor Earnings Summary</h2>
+
+<form method="get" style="margin-bottom: 15px;">
+    <label>Start Date: <input type="date" name="start_date" value="{{ start_date|default:'' }}"></label>
+    <label>End Date: <input type="date" name="end_date" value="{{ end_date|default:'' }}"></label>
+    <input type="submit" value="Filter">
+</form>
+
+<table border="1" cellpadding="5" cellspacing="0">
+    <tr>
+        <th>Pharmacy</th>
+        <th>Total Orders</th>
+        <th>Total Commission</th>
+        <th>Total Vendor Amount</th>
+    </tr>
+    {% for row in commission_summary %}
+    <tr>
+        <td>{{ row.pharmacy__name }}</td>
+        <td>{{ row.total_orders|floatformat:2 }}</td>
+        <td>{{ row.total_commission|floatformat:2 }}</td>
+        <td>{{ row.total_vendor_amount|floatformat:2 }}</td>
+    </tr>
+    {% endfor %}
+</table>
+
+{{ block.super }}
+{% endblock %}
