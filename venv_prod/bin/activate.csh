@@ -13,13 +13,13 @@ setenv VIRTUAL_ENV /Users/user/pharmacies_saas2/backend/venv_prod
 
 set _OLD_VIRTUAL_PATH="$PATH"
 setenv PATH "$VIRTUAL_ENV/"bin":$PATH"
+setenv VIRTUAL_ENV_PROMPT venv_prod
 
 
 set _OLD_VIRTUAL_PROMPT="$prompt"
 
 if (! "$?VIRTUAL_ENV_DISABLE_PROMPT") then
-    set prompt = '(venv_prod) '"$prompt"
-    setenv VIRTUAL_ENV_PROMPT '(venv_prod) '
+    set prompt = "("venv_prod") $prompt:q"
 endif
 
 alias pydoc python -m pydoc
