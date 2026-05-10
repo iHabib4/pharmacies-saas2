@@ -4,49 +4,82 @@ from django.contrib.auth import get_user_model
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 
-from apps.pharmacies.models import Pharmacy  # adjust path if needed
+from apps.pharmacies.models import Pharmacy
 
-# Use your custom user model
 User = get_user_model()
 
 
 @csrf_exempt
 def register(request):
+
     if request.method != "POST":
-        return JsonResponse({"error": "POST required"}, status=400)
+        return JsonResponse(
+            {"error": "POST required"},
+            status=400
+        )
 
     try:
         data = json.loads(request.body)
-    except json.JSONDecodeError:
-        return JsonResponse({"error": "Invalid JSON"}, status=400)
 
-    email = data.get("email")
+    except json.JSONDecodeError:
+        return JsonResponse(
+            {"error": "Invalid JSON"},
+            status=400
+        )
+
+    mobile_number = data.get("mobile_number")
     password = data.get("password")
     pharmacy_name = data.get("pharmacy_name")
+    role = data.get("role", "customer")
 
-    if not email or not password or not pharmacy_name:
-        return JsonResponse({"error": "Missing fields"}, status=400)
+    if not mobile_number or not password:
+        return JsonResponse(
+            {"error": "Missing fields"},
+            status=400
+        )
 
-    # Check if user already exists
-    if User.objects.filter(email=email).exists():
-        return JsonResponse({"error": "Email already registered"}, status=400)
+    if User.objects.filter(
+        mobile_number=mobile_number
+    ).exists():
+
+        return JsonResponse(
+            {"error": "User already exists"},
+            status=400
+        )
 
     try:
-        # Create user
-        user = User.objects.create_user(username=email, email=email, password=password)
 
-        # Create pharmacy linked to user
-        pharmacy = Pharmacy.objects.create(name=pharmacy_name, owner=user)
+        user = User.objects.create_user(
+            mobile_number=mobile_number,
+            password=password,
+            role=role
+        )
 
-        # Return success JSON
+        pharmacy = None
+
+        if role in ["pharmacy", "pharmacy_owner"]:
+
+            pharmacy = Pharmacy.objects.create(
+                name=pharmacy_name or mobile_number,
+                owner=user
+            )
+
+            user.pharmacy = pharmacy
+            user.save()
+
         return JsonResponse(
             {
                 "message": "Registration successful",
                 "user_id": user.id,
-                "pharmacy_id": pharmacy.id,
+                "role": user.role,
+                "pharmacy_id": pharmacy.id if pharmacy else None
             },
-            status=201,
+            status=201
         )
 
     except Exception as e:
-        return JsonResponse({"error": str(e)}, status=500)
+
+        return JsonResponse(
+            {"error": str(e)},
+            status=500
+        )

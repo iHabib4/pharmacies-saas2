@@ -1,70 +1,89 @@
 # apps/pharmacies/views.py
+
 from django.shortcuts import render
+from django.utils import timezone
+
 from rest_framework import viewsets
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
+
 from apps.products.models import MedicineBatch
-from apps.pharmacies.models import Rider
+from apps.pharmacies.models import Pharmacy, Rider
+from apps.pharmacies.serializers import PharmacySerializer
+
 from .dispatch import find_best_rider
-from .models import Pharmacy  # only import Pharmacy
-from .serializers import PharmacySerializer
 from .services import calculate_fastest_route
 
+
+# =========================
+# PHARMACY CRUD API
+# =========================
 
 class PharmacyViewSet(viewsets.ModelViewSet):
     queryset = Pharmacy.objects.all()
     serializer_class = PharmacySerializer
 
+    # ✅ FIX: automatically assign logged-in user as owner
+    def perform_create(self, serializer):
+        serializer.save(owner=self.request.user)
+
+
+# =========================
+# PRODUCT RECOMMENDATION (WEB)
+# =========================
 
 def recommend_products_view(request):
-    # Only active pharmacies
-    all_pharmacies = Pharmacy.objects.filter(is_active=True)
+    pharmacies = Pharmacy.objects.filter(is_active=True)
 
-    # Filter OTC products
-    recommended_products = all_pharmacies.filter(is_otc=True)
+    recommended_products = pharmacies.filter(is_otc=True)
+    excluded_count = pharmacies.filter(is_otc=False).count()
 
-    # Count prescription-only products
-    excluded_count = all_pharmacies.filter(is_otc=False).count()
-
-    context = {
+    return render(request, "products/recommendations.html", {
         "recommended_products": recommended_products,
         "excluded_count": excluded_count,
         "warning_message": "⚠ Consult a doctor if symptoms persist.",
-    }
+    })
 
-    return render(request, "products/recommendations.html", context)
 
+# =========================
+# RIDER ASSIGNMENT LOGIC
+# =========================
 
 def assign_rider(delivery):
-    rider = find_best_rider(delivery.pharmacy.latitude, delivery.pharmacy.longitude)
+    rider = find_best_rider(
+        delivery.pharmacy.latitude,
+        delivery.pharmacy.longitude
+    )
 
-    if rider:
-        delivery.rider = rider
-        delivery.status = "assigned"
+    if not rider:
+        return
 
-        # Route optimization
-        route_info = calculate_fastest_route(
-            (delivery.pharmacy.latitude, delivery.pharmacy.longitude),
-            (delivery.customer.latitude, delivery.customer.longitude),
-        )
-        delivery.estimated_distance_km = route_info["distance_km"]
-        delivery.estimated_time_min = route_info["traffic_duration_min"]
+    route = calculate_fastest_route(
+        (delivery.pharmacy.latitude, delivery.pharmacy.longitude),
+        (delivery.customer.latitude, delivery.customer.longitude),
+    )
 
-        rider.is_available = False
-        rider.save()
-        delivery.save()
+    delivery.rider = rider
+    delivery.status = "assigned"
+    delivery.estimated_distance_km = route.get("distance_km", 0)
+    delivery.estimated_time_min = route.get("traffic_duration_min", 0)
 
+    rider.is_available = False
+
+    rider.save()
+    delivery.save()
+
+
+# =========================
+# RIDER LOCATION UPDATE API
+# =========================
 
 @api_view(["POST"])
 @permission_classes([IsAuthenticated])
 def update_location(request):
-    """
-    Riders send current location every 5 seconds.
-    """
-    user = request.user
     try:
-        rider = Rider.objects.get(user=user)
+        rider = Rider.objects.get(user=request.user)
     except Rider.DoesNotExist:
         return Response({"error": "Rider not found"}, status=404)
 
@@ -72,7 +91,7 @@ def update_location(request):
     longitude = request.data.get("longitude")
 
     if latitude is None or longitude is None:
-        return Response({"error": "Missing latitude or longitude"}, status=400)
+        return Response({"error": "Missing coordinates"}, status=400)
 
     rider.latitude = latitude
     rider.longitude = longitude
@@ -81,21 +100,31 @@ def update_location(request):
     return Response({"status": "location updated"})
 
 
+# =========================
+# PHARMACY DASHBOARD STATS
+# =========================
+
 @api_view(["GET"])
 @permission_classes([IsAuthenticated])
 def pharmacy_stats(request):
     user = request.user
 
-    if not user.pharmacy:
+    # safe check for linked pharmacy
+    if not hasattr(user, "pharmacy") or not user.pharmacy:
         return Response({"error": "No pharmacy linked"}, status=400)
 
-    batches = MedicineBatch.objects.filter(pharmacy=user.pharmacy)
+    pharmacy = user.pharmacy
+    batches = MedicineBatch.objects.filter(pharmacy=pharmacy)
 
-    low_stock = batches.filter(quantity__lte=5).count()
-    expired = batches.filter(expiry_date__lt="2026-01-01").count()
+    today = timezone.now().date()
+    low_stock_threshold = 5
+
+    low_stock_count = batches.filter(quantity__lte=low_stock_threshold).count()
+    expired_count = batches.filter(expiry_date__lt=today).count()
 
     return Response({
+        "pharmacy_id": pharmacy.id,
         "total_batches": batches.count(),
-        "low_stock": low_stock,
-        "expired": expired,
+        "low_stock": low_stock_count,
+        "expired": expired_count,
     })
